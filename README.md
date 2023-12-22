@@ -1,9 +1,10 @@
 Gigify
 README for Gigify Node.js Application
-Introduction
+
+Introduction:
 This README provides instructions for setting up and running the Gigify Node.js application. Gigify is a web application built using Node.js, Express, and MySQL, designed for musicians and venue owners to connect and manage gigs.
 
-Prerequisites
+Prerequisites:
 Before you begin, ensure you have the following installed:
 
 Node.js (Download from Node.js website)
