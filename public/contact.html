@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Contact Us - Gigify</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+      <h1><a href="index.html">GIGIFY</a></h1>
+      <p>Your Booking App</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="search.html">Search Acts/Venues</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="contact-container" id="contactform">
+          <form id="contactForm">
+            <h2>Contact Us</h2>
+            <p>
+              If you have any questions or concerns, please contact us below
+              using the form.
+            </p>
+            &nbsp;
+            <div class="field">
+                <label for="email">Your Email:</label>
+                <input type="email" id="email" name="email" required />
+              </div>
+            <div class="field">
+              <label for="subject">Subject:</label>
+              <input type="text" id="subject" name="subject" required />
+            </div>
+            <div class="field">
+              <label for="description">Description:</label>
+              <textarea
+                id="description"
+                name="description"
+                required
+                rows="5"
+                cols="33"
+              ></textarea>
+            </div>
+            <div class="button-container">
+              <button type="submit" class="button">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>Gigify &copy; 2023</p>
+    </footer>
+
+    <script src="contact.js"></script>
+  </body>
+</html>

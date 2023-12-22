@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gigify</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1><a href="index.html">GIGIFY</a></h1>
+      <p>Your Booking App</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="search.html">Search Acts/Venues</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <div class="main-content">
+      &nbsp;
+      <!-- Search Form Section -->
+      <div class="search-form">
+        <h2>Search Musicians or Venues</h2>
+        <form id="searchForm" onsubmit="search(event)">
+          <label for="acts">Number of Acts:</label>
+          <input type="number" id="acts" name="acts" min="1" />
+
+          <label for="location">Location:</label>
+          <input type="text" id="location" name="location" />
+
+          <label for="genre">Genre:</label>
+          <input type="text" id="genre" name="genre" />
+
+          <label for="availability">Availability:</label>
+          <input type="date" id="availability" name="availability" />
+
+          <a href="results.html" class="button">Search</a>
+        </form>
+
+        <!-- Display search results here -->
+        <div id="searchResults"></div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <p>Gigify &copy; 2023</p>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script src="script.js"></script>
+  </body>
+</html>

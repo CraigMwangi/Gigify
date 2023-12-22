@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gigify - Your Booking App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1><a href="index.html">GIGIFY</a></h1>
+      <p>Your Booking App</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="search.html">Search Acts/Venues</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <!-- Main Content Section -->
+    <div id="welcomeSection" class="welcome">
+      <h4>Hi! Welcome to Gigify, your music booking app.</h4>
+      <p>
+        Our platform allows you to find local musicians or venues in your area.
+      </p>
+      <a href="#wrapperSection"
+        ><p><u>Please complete our form below to create your account.</u></p></a
+      >
+    </div>
+    &nbsp;
+
+    <!-- Registration Form Section -->
+    <div id="wrapperSection" class="welcome">
+      <div class="form-wrapper">
+        <form id="registrationForm" action="/register" method="POST">
+          <h2>Create an account</h2>
+          <a href="login.html"
+            ><h3><u>Already have an account? Login here.</u></h3></a
+          >
+          <div class="field">
+            <input
+              type="radio"
+              name="category"
+              id="musician"
+              value="Musician"
+              required
+            />
+            <label for="musician">Musician</label>
+          </div>
+          <div class="field">
+            <input
+              type="radio"
+              name="category"
+              id="venue"
+              value="Venue"
+              required
+            />
+            <label for="venue">Venue</label>
+          </div>
+
+          <div class="field">
+            <input type="email" id="email" name="email" required />
+            <label for="email">Email</label>
+          </div>
+
+          <div class="field">
+            <input type="text" id="fullName" name="fullName" required />
+            <label for="fullName">Full Name</label>
+          </div>
+
+          <div class="field">
+            <input type="date" id="birthday" name="birthday" required />
+            <label for="birthday">Enter your birthday</label>
+          </div>
+
+          <div class="field">
+            <input type="text" id="location" name="location" required />
+            <label for="location">Enter your Town/City</label>
+          </div>
+
+          <div class="field">
+            <input type="text" id="username" name="username" required />
+            <label for="username">Username</label>
+          </div>
+
+          <div class="field">
+            <input type="password" id="password" name="password" required />
+            <label for="password">Password</label>
+          </div>
+          <!-- Submit Button -->
+          <button type="submit" class="button">Register</button>
+        </form>
+      </div>
+    </div>
+    <!-- Footer Section -->
+    <footer>
+      <p>Gigify &copy; 2023</p>
+    </footer>
+
+    <!-- JavaScript Section -->
+    <script>
+      document
+        .getElementById("registrationForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = {
+            category: document.querySelector('input[name="category"]:checked')
+              ?.value,
+            email: document.getElementById("email").value,
+            fullName: document.getElementById("fullName").value,
+            birthday: document.getElementById("birthday").value,
+            location: document.getElementById("location").value,
+            username: document.getElementById("username").value,
+            password: document.getElementById("password").value,
+          };
+
+          fetch("/register", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          })
+            .then((response) => response.json())
+            .then((data) => {
+              if (data.message === "User registered successfully") {
+                alert(data.message);
+                window.location.href = "search.html"; // Redirect on successful registration
+              } else {
+                alert(data.message); // Show error message, e.g., "Username already taken"
+              }
+            })
+            .catch((error) => {
+              console.error("Error:", error);
+              alert("Registration failed: " + error.message); // Display the error message
+            });
+        });
+    </script>
+  </body>
+</html>

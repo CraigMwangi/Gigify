@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gigify - Login</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header>
+        <h1><a href="index.html">GIGIFY</a></h1>
+        <p>Your Booking App</p>
+        <nav>
+          <a href="index.html">Home</a>
+          <a href="login.html">Login</a>
+          <a href="search.html">Search Acts/Venues</a>
+          <a href="contact.html">Contact</a>
+          <a href="about.html">About</a>
+        </nav>
+      </header>
+
+    <div class="main-content">
+        &nbsp;
+    <div class="login-form">
+        &nbsp;
+      <h2>Login to Gigify</h2>
+        &nbsp;
+      <form id="loginForm">
+        <div class="field">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required />
+        </div>
+        <div class="field">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <div class="button-container">
+            
+            <button type="submit" class="button">Login</button>
+        </div>
+      </form>
+    </div>
+    </div>
+
+    <footer>
+      <p>Gigify &copy; 2023</p>
+    </footer>
+
+    <script>
+    document.getElementById("loginForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    fetch("/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password }),
+    })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.success) {
+        alert('Login successful. Redirecting to search page.'); 
+        window.location.href = "search.html"; 
+      } else {
+        alert(data.message); 
+      }
+    })
+    .catch((error) => {
+      console.error("Error:", error);
+    });
+  });
+</script>
+
+    </script>
+  </body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Gigify</title>
+    <link rel="stylesheet" href="style.css" />
+    <style></style>
+  </head>
+  <body>
+    <!-- Header Section -->
+    <header>
+      <h1><a href="index.html">GIGIFY</a></h1>
+      <p>Your Booking App</p>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="login.html">Login</a>
+        <a href="search.html">Search Acts/Venues</a>
+        <a href="contact.html">Contact</a>
+        <a href="about.html">About</a>
+      </nav>
+    </header>
+
+    <div class="profile-container">
+      <!-- Profile Picture -->
+      <div class="profile-picture">
+        <img src="profilepic.png" alt="Profile Picture" />
+      </div>
+      <div id="profileContent"></div>
+
+      <!-- Gallery Section -->
+      <div class="gallery-section">
+        <h2>Gallery</h2>
+        <div class="gallery">
+          <img src="artistperform.jpg" alt="Gallery Photo" />
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const actId = urlParams.get("actId");
+        // Fetch and display the act's profile using actId
+        fetchActProfile(actId).then((profile) => {
+          displayProfile(profile);
+        });
+      });
+
+      async function fetchActProfile(actId) {
+        // This is just a mock function
+        const mockData = {
+          1: {
+            name: "Archie Mooreston",
+            location: "Whitechapel (0.5 mi away)",
+            genre: "Jazz",
+            bio: "Jazz musician based in Whitechapel, performing locally since 2015.",
+            peformancedetails:
+              "Looking for a Jazz performance on the 15th of July.",
+            profilePic: "profilepic.png",
+            category: "Musician",
+            galleryImages: ["artistperform.jpg"],
+            email: "archie@example.com",
+            website: "https://www.archiemooreston.com",
+            socialMedia: {
+              spotify: "https://www.spotify.com",
+              instagram: "https://www.instagram.com",
+              tiktok: "https://www.tiktok.com",
+            },
+          },
+          2: {
+            name: "The Old George",
+            location: "Shoreditch (1.4 mi away)",
+            genre: "Jazz",
+            bio: "A popular jazz bar known for their energetic performances and unique sound.",
+            peformancedetails:
+              "Looking for a Jazz artist to perform at our venue on the 15th of July.",
+            category: "Venue",
+            profilePic: "profilepic.png",
+            galleryImages: ["oldgeorgepic.jpg"],
+            email: "oldgeorge@example.com",
+            website: "https://www.theoldgeorge.com",
+            socialMedia: {
+              instagram: "https://www.instagram.com",
+              tiktok: "https://www.tiktok.com",
+            },
+          },
+          3: {
+            name: "Marquis of Lewisham",
+            location: "Lewisham (0.7 mi away)",
+            genre: "Hip-Hop",
+            bio: "A beautiful venue welcoming all cultures.",
+            peformancedetails:
+              "We are looking for a Hip-Hop artist to perform at our venue on the 23th of July.",
+            category: "Venue",
+            profilePic: "profilepic.png",
+            galleryImages: ["marquisgallery.jpg"],
+            email: "marquis@example.com",
+            website: "https://www.marquisoflewisham.com",
+            socialMedia: {
+              instagram: "https://www.instagram.com",
+              tiktok: "https://www.tiktok.com",
+            },
+          },
+          4: {
+            name: "Abby Cook",
+            location: "New Cross (0.1 mi away)",
+            genre: "Soul",
+            bio: "A soul singer from South London also a creative arts student.",
+            peformancedetails:
+              "Looking for a Soul performance on the 23th of July.",
+            category: "Musician",
+            profilePic: "profilepic.png",
+            galleryImages: ["abbycookgallery.jpg"],
+            email: "abby@example.com",
+            website: "https://www.abbycook.com",
+            socialMedia: {
+              spotify: "https://www.spotify.com",
+              instagram: "https://www.instagram.com",
+              tiktok: "https://www.tiktok.com",
+            },
+          },
+          5: {
+            name: "Adam Day",
+            location: "Kent (1.3 mi away)",
+            genre: "R&B",
+            bio: "An R&B Singer/Rapper from Kent.",
+            peformancedetails:
+              "Looking for an R&B performance on the 28th of July.",
+            category: "Musician",
+            profilePic: "profilepic.png",
+            galleryImages: ["adamdaygallery.jpg"],
+            email: "adam@example.com",
+            website: "https://www.adamday.com",
+            socialMedia: {
+              spotify: "https://www.spotify.com",
+              instagram: "https://www.instagram.com",
+              tiktok: "https://www.tiktok.com",
+            },
+            // ... other acts ...
+          },
+        };
+
+        return new Promise((resolve) => {
+          setTimeout(() => resolve(mockData[actId]), 500);
+        });
+      }
+
+      function displayProfile(profile) {
+        if (profile) {
+          // Set profile picture
+          const profilePicElement = document.querySelector(
+            ".profile-picture img"
+          );
+          profilePicElement.src = profile.profilePic;
+          profilePicElement.alt = profile.name;
+
+          // Set bio and other details
+          const profileContent = document.getElementById("profileContent");
+          profileContent.innerHTML = `
+        <h2>${profile.name}</h2>
+        <p><strong>Category:</strong> ${profile.category}</p>
+        <p><strong>Location:</strong> ${profile.location}</p>
+        <p><strong>Genre:</strong> ${profile.genre}</p>
+        <p><strong>Bio:</strong> ${profile.bio}</p>
+        <p><strong>Wanted:</strong><h3> ${profile.peformancedetails}</h3></p>
+        <p><strong>Contact Below:</strong></p>
+      `;
+
+          //Contact Email
+          const contactBtn = document.createElement("a");
+          contactBtn.href = `mailto:${profile.email}`;
+          contactBtn.textContent = "Contact Email";
+          contactBtn.className = "contact-button";
+          document.getElementById("profileContent");
+          profileContent.appendChild(contactBtn);
+
+          if (profile.website) {
+            const websiteLink = document.createElement("a");
+            websiteLink.href = profile.website;
+            websiteLink.textContent = "Visit Website";
+            websiteLink.className = "website-link";
+            websiteLink.target = "_blank";
+            profileContent.appendChild(websiteLink);
+          }
+
+          // Add social media links if available
+          if (profile.socialMedia) {
+            const socialMediaContainer = document.createElement("div");
+            socialMediaContainer.className = "social-media-links";
+
+            for (const [platform, url] of Object.entries(profile.socialMedia)) {
+              const socialLink = document.createElement("a");
+              socialLink.href = url;
+              socialLink.textContent = `Follow on ${
+                platform.charAt(0).toUpperCase() + platform.slice(1)
+              }`;
+              socialLink.className = "social-link";
+              socialLink.target = "_blank";
+              socialMediaContainer.appendChild(socialLink);
+            }
+
+            profileContent.appendChild(socialMediaContainer);
+          }
+
+          // const peformancedetails = document.createElement("h3");
+          // peformancedetails.textContent = profile.peformancedetails;
+          // peformancedetails.className = "peformancedetails"; // Add this class for styling
+          // document.getElementById("profileContent");
+          // profileContent.appendChild(peformancedetails);
+
+          // Set gallery images
+          const gallery = document.querySelector(".gallery");
+          gallery.innerHTML = profile.galleryImages
+            .map((img) => `<img src="${img}" alt="Gallery Image">`)
+            .join("");
+        } else {
+          document.getElementById("profileContent").innerHTML =
+            "<p>Profile not found.</p>";
+        }
+      }
+    </script>
+    <!-- Footer Section -->
+    <footer>
+      <p>Gigify &copy; 2023</p>
+    </footer>
+  </body>
+</html>
